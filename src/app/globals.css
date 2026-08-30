@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+:root {
+  /* ================================
+     PLAYZO BRAND
+     ================================ */
+
+  --pz-primary: #635BFF;
+  --pz-primary-dark: #4F46E5;
+  --pz-primary-light: #EEEDFF;
+
+  --pz-bg: #F6F7FB;
+  --pz-card: #FFFFFF;
+
+  --pz-text: #171725;
+  --pz-muted: #6B7280;
+  --pz-border: #E5E7EB;
+
+
+  /* ================================
+     SLOT COLORS
+     ================================ */
+
+  /* Available */
+  --pz-slot-available-bg: #F3F4F8;
+  --pz-slot-available-text: #635BFF;
+
+  /* Selected */
+  --pz-slot-selected-bg: #635BFF;
+  --pz-slot-selected-text: #FFFFFF;
+
+  /* Already booked */
+  --pz-slot-booked-bg: #FFE8E8;
+  --pz-slot-booked-text: #D92D20;
+
+  /* Disabled */
+  --pz-slot-disabled-bg: #E9EBF0;
+  --pz-slot-disabled-text: #9CA3AF;
+
+  /* Temporarily reserved */
+  --pz-slot-reserved-bg: #FFF3D6;
+  --pz-slot-reserved-text: #C47A00;
+
+
+  /* ================================
+     STATUS
+     ================================ */
+
+  --pz-success: #12B76A;
+  --pz-danger: #D92D20;
+  --pz-warning: #F79009;
+  --pz-info: #2E90FA;
+
+
+  /* ================================
+     RADIUS
+     ================================ */
+
+  --pz-radius-lg: 16px;
+  --pz-radius-md: 12px;
+  --pz-radius-sm: 8px;
+}
+
+@theme inline {
+  --color-primary: var(--pz-primary);
+  --color-primary-dark: var(--pz-primary-dark);
+  --color-primary-light: var(--pz-primary-light);
+
+  --color-bg: var(--pz-bg);
+  --color-card: var(--pz-card);
+
+  --color-ink: var(--pz-text);
+  --color-muted: var(--pz-muted);
+  --color-border: var(--pz-border);
+
+  --color-success: var(--pz-success);
+  --color-danger: var(--pz-danger);
+  --color-warning: var(--pz-warning);
+  --color-info: var(--pz-info);
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--pz-bg);
+  color: var(--pz-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  scrollbar-width: thin;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--pz-primary);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+@keyframes pz-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pz-fade-up {
+  animation: pz-fade-up 0.35s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
