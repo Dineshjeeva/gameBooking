@@ -643,6 +643,12 @@ const MOCK_SESSION_KEY = "playzo_mock_session_uid";
 function AuthProvider({ children }) {
     const [user, setUser] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
+    // Check Firebase configuration
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        console.log("🔥 Firebase configured:", __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isFirebaseConfigured"]);
+        console.log("🔥 Firebase auth:", __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["auth"]);
+        console.log("🔥 Firebase db:", __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["db"]);
+    }, []);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         if (__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isFirebaseConfigured"] && __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["auth"]) {
             const unsub = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$auth$2f$dist$2f$node$2d$esm$2f$totp$2d$C24pd8aS$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__$5f$__as__onAuthStateChanged$3e$__["onAuthStateChanged"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["auth"], async (fbUser)=>{
@@ -652,13 +658,17 @@ function AuthProvider({ children }) {
                     return;
                 }
                 try {
+                    console.log("🔥 Auth state changed. UID:", fbUser.uid);
                     const snap = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["getDoc"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$common$2d$DjihRWhV$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__t__as__doc$3e$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["db"], "users", fbUser.uid));
+                    console.log("🔥 Firestore user document exists:", snap.exists());
                     if (snap.exists()) {
+                        console.log("🔥 Firestore user data:", snap.data());
                         setUser({
                             id: fbUser.uid,
                             ...snap.data()
                         });
                     } else {
+                        console.log("⚠️ No Firestore document found. Using fallback user.");
                         const fallback = {
                             id: fbUser.uid,
                             name: fbUser.displayName ?? "Player",
@@ -668,6 +678,8 @@ function AuthProvider({ children }) {
                         };
                         setUser(fallback);
                     }
+                } catch (error) {
+                    console.error("❌ Error loading Firestore user:", error);
                 } finally{
                     setLoading(false);
                 }
@@ -682,12 +694,27 @@ function AuthProvider({ children }) {
             Promise.resolve().then(()=>setLoading(false));
         }
     }, []);
+    // --------------------------------------------------
+    // SIGN IN
+    // --------------------------------------------------
     async function signIn(email, password) {
         if (__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isFirebaseConfigured"] && __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["auth"]) {
-            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$auth$2f$dist$2f$node$2d$esm$2f$totp$2d$C24pd8aS$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__af__as__signInWithEmailAndPassword$3e$__["signInWithEmailAndPassword"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["auth"], email, password);
-            return;
+            try {
+                console.log("🔥 Firebase login:", email);
+                await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$auth$2f$dist$2f$node$2d$esm$2f$totp$2d$C24pd8aS$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__af__as__signInWithEmailAndPassword$3e$__["signInWithEmailAndPassword"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["auth"], email, password);
+                console.log("✅ Firebase login successful");
+                return;
+            } catch (error) {
+                console.error("❌ Firebase login failed");
+                console.error("Code:", error?.code);
+                console.error("Message:", error?.message);
+                throw error;
+            }
         }
-        if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isValidEmail"])(email)) throw new Error("Enter a valid email address.");
+        // Mock login
+        if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isValidEmail"])(email)) {
+            throw new Error("Enter a valid email address.");
+        }
         const existing = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$mockStore$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["mockFindUserByEmail"](email);
         if (!existing || existing.password !== password) {
             throw new Error("Invalid email or password.");
@@ -703,26 +730,71 @@ function AuthProvider({ children }) {
         };
         setUser(rest);
     }
+    // --------------------------------------------------
+    // SIGN UP
+    // --------------------------------------------------
     async function signUp(name, email, password, phone) {
         if (__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isFirebaseConfigured"] && __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["auth"] && __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["db"]) {
-            const cred = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$auth$2f$dist$2f$node$2d$esm$2f$totp$2d$C24pd8aS$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__x__as__createUserWithEmailAndPassword$3e$__["createUserWithEmailAndPassword"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["auth"], email, password);
-            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$auth$2f$dist$2f$node$2d$esm$2f$totp$2d$C24pd8aS$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__aq__as__updateProfile$3e$__["updateProfile"])(cred.user, {
-                displayName: name
-            });
-            const newUser = {
-                name,
-                email,
-                phone,
-                role: "user",
-                createdAt: new Date().toISOString()
-            };
-            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["setDoc"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$common$2d$DjihRWhV$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__t__as__doc$3e$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["db"], "users", cred.user.uid), newUser);
-            return;
+            try {
+                console.log("🔥 Starting Firebase signup...");
+                console.log("Email:", email);
+                console.log("Name:", name);
+                // 1. Create Firebase Authentication user
+                const cred = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$auth$2f$dist$2f$node$2d$esm$2f$totp$2d$C24pd8aS$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__x__as__createUserWithEmailAndPassword$3e$__["createUserWithEmailAndPassword"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["auth"], email, password);
+                console.log("✅ Firebase Auth user created");
+                console.log("🔥 Firebase UID:", cred.user.uid);
+                // 2. Update Firebase display name
+                await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$auth$2f$dist$2f$node$2d$esm$2f$totp$2d$C24pd8aS$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__aq__as__updateProfile$3e$__["updateProfile"])(cred.user, {
+                    displayName: name
+                });
+                console.log("✅ Firebase profile updated");
+                // 3. Prepare Firestore user data
+                const newUser = {
+                    name,
+                    email,
+                    ...phone ? {
+                        phone
+                    } : {},
+                    role: "user",
+                    createdAt: new Date().toISOString()
+                };
+                console.log("🔥 Firestore data:", newUser);
+                // 4. Create Firestore document
+                console.log("🔥 Writing Firestore document...");
+                await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["setDoc"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$common$2d$DjihRWhV$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__t__as__doc$3e$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["db"], "users", cred.user.uid), newUser);
+                console.log("✅ Firestore document created successfully!");
+                console.log("🔥 Document path:", `users/${cred.user.uid}`);
+                // 5. Verify Firestore document
+                console.log("🔥 Verifying Firestore document...");
+                const check = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$index$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["getDoc"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$common$2d$DjihRWhV$2e$node$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__t__as__doc$3e$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["db"], "users", cred.user.uid));
+                console.log("🔥 Document exists:", check.exists());
+                console.log("🔥 Document data:", check.data());
+                if (!check.exists()) {
+                    throw new Error("Firestore document was not created.");
+                }
+                console.log("🎉 Firebase signup completed successfully!");
+                return;
+            } catch (error) {
+                console.error("❌❌❌ FIREBASE SIGNUP ERROR ❌❌❌");
+                console.error("Error code:", error?.code);
+                console.error("Error message:", error?.message);
+                console.error("Full error:", error);
+                throw error;
+            }
         }
-        if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isValidEmail"])(email)) throw new Error("Enter a valid email address.");
-        if (password.length < 6) throw new Error("Password must be at least 6 characters.");
+        // --------------------------------------------------
+        // MOCK SIGNUP
+        // --------------------------------------------------
+        if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isValidEmail"])(email)) {
+            throw new Error("Enter a valid email address.");
+        }
+        if (password.length < 6) {
+            throw new Error("Password must be at least 6 characters.");
+        }
         const existing = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$mockStore$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["mockFindUserByEmail"](email);
-        if (existing) throw new Error("An account with this email already exists.");
+        if (existing) {
+            throw new Error("An account with this email already exists.");
+        }
         const newUser = {
             id: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["generateId"])("user"),
             name,
@@ -743,6 +815,9 @@ function AuthProvider({ children }) {
             createdAt: newUser.createdAt
         });
     }
+    // --------------------------------------------------
+    // SIGN OUT
+    // --------------------------------------------------
     async function signOutUser() {
         if (__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isFirebaseConfigured"] && __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["auth"]) {
             await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$auth$2f$dist$2f$node$2d$esm$2f$totp$2d$C24pd8aS$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__ak__as__signOut$3e$__["signOut"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["auth"]);
@@ -762,13 +837,15 @@ function AuthProvider({ children }) {
         children: children
     }, void 0, false, {
         fileName: "[project]/src/lib/auth.tsx",
-        lineNumber: 151,
+        lineNumber: 382,
         columnNumber: 5
     }, this);
 }
 function useAuth() {
     const ctx = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useContext"])(AuthContext);
-    if (!ctx) throw new Error("useAuth must be used within AuthProvider");
+    if (!ctx) {
+        throw new Error("useAuth must be used within AuthProvider");
+    }
     return ctx;
 }
 }),
@@ -847,12 +924,12 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2
 ;
 ;
 const firebaseConfig = {
-    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
+    apiKey: ("TURBOPACK compile-time value", "AIzaSyCx9B7Hl89UfhYAvg23WAOiKkgRht9s1pc"),
+    authDomain: ("TURBOPACK compile-time value", "playzo-booking.firebaseapp.com"),
+    projectId: ("TURBOPACK compile-time value", "playzo-booking"),
+    storageBucket: ("TURBOPACK compile-time value", "playzo-booking.firebasestorage.app"),
+    messagingSenderId: ("TURBOPACK compile-time value", "662011719207"),
+    appId: ("TURBOPACK compile-time value", "1:662011719207:web:9074a353cfeb48f18aa802")
 };
 const isFirebaseConfigured = Boolean(firebaseConfig.apiKey && firebaseConfig.authDomain && firebaseConfig.projectId && firebaseConfig.appId);
 let app;

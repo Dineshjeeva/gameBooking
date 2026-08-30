@@ -1,6 +1,18 @@
-{"timestamp":"00:00:01.296","source":"Server","level":"LOG","message":""}
-{"timestamp":"00:00:24.905","source":"Server","level":"LOG","message":"○ Compiling / ..."}
-{"timestamp":"00:00:46.597","source":"Browser","level":"WARN","message":"Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior"}
-{"timestamp":"00:00:46.643","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\\\"smooth\\\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\\u001b[39m\""}
-{"timestamp":"00:06:05.595","source":"Browser","level":"WARN","message":"Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior"}
-{"timestamp":"00:06:05.600","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\\\"smooth\\\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\\u001b[39m\""}
+{"timestamp":"00:00:00.534","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:04.337","source":"Browser","level":"LOG","message":"🔥 Firebase configured: true"}
+{"timestamp":"00:00:04.337","source":"Browser","level":"LOG","message":"🔥 Firebase auth: [object Object]"}
+{"timestamp":"00:00:04.337","source":"Browser","level":"LOG","message":"🔥 Firebase db: [object Object]"}
+{"timestamp":"00:00:04.337","source":"Browser","level":"LOG","message":"\u001b[2;38;2;124;124;124m🔥 Firebase configured:\u001b[0m true"}
+{"timestamp":"00:00:04.337","source":"Browser","level":"LOG","message":"\u001b[2;38;2;124;124;124m🔥 Firebase auth:\u001b[0m [object Object]"}
+{"timestamp":"00:00:04.337","source":"Browser","level":"LOG","message":"\u001b[2;38;2;124;124;124m🔥 Firebase db:\u001b[0m [object Object]"}
+{"timestamp":"00:00:04.846","source":"Browser","level":"LOG","message":"🔥 Auth state changed. UID: sZlhPAZMwkfoGHh5ufUYFme2Fxn2"}
+{"timestamp":"00:00:05.725","source":"Browser","level":"LOG","message":"🔥 Firestore user document exists: true"}
+{"timestamp":"00:00:05.726","source":"Browser","level":"LOG","message":"🔥 Firestore user data: {\"createdAt\":\"2026-08-30T11:33:23.504Z\",\"email\":\"djeeva1515@gmail.com\",\"name\":\"Dinesh jeeva\",\"phone\":\"+915058612222\",\"role\":\"user\"}"}
+{"timestamp":"00:00:06.919","source":"Browser","level":"WARN","message":"Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior"}
+{"timestamp":"00:00:06.956","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\\\"smooth\\\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\\u001b[39m\""}
+{"timestamp":"00:00:10.473","source":"Server","level":"LOG","message":"GENERATED SLOTS: {}"}
+{"timestamp":"00:00:11.914","source":"Server","level":"LOG","message":"BOOKING RESOURCE ID: \"court_001\""}
+{"timestamp":"00:00:12.309","source":"Server","level":"LOG","message":"BOOKING RESOURCE: {}"}
+{"timestamp":"00:00:12.700","source":"Server","level":"LOG","message":"BOOKING VENUE: {}"}
+{"timestamp":"00:00:13.165","source":"Server","level":"LOG","message":"GENERATED SLOTS: {}"}
+{"timestamp":"00:00:37.551","source":"Server","level":"LOG","message":"GENERATED SLOTS: {}"}

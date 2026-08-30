@@ -808,7 +808,7 @@ function SportCard({ category, label, description, resourceCount }) {
                 className: "h-32 w-full"
             }, void 0, false, {
                 fileName: "[project]/src/components/sports/SportCard.tsx",
-                lineNumber: 22,
+                lineNumber: 23,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -819,7 +819,7 @@ function SportCard({ category, label, description, resourceCount }) {
                         children: label
                     }, void 0, false, {
                         fileName: "[project]/src/components/sports/SportCard.tsx",
-                        lineNumber: 24,
+                        lineNumber: 29,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -827,7 +827,7 @@ function SportCard({ category, label, description, resourceCount }) {
                         children: description
                     }, void 0, false, {
                         fileName: "[project]/src/components/sports/SportCard.tsx",
-                        lineNumber: 25,
+                        lineNumber: 33,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -842,42 +842,42 @@ function SportCard({ category, label, description, resourceCount }) {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/sports/SportCard.tsx",
-                                lineNumber: 27,
+                                lineNumber: 38,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 className: "flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-1.5",
                                 children: [
-                                    "Book Now ",
+                                    "Book Now",
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
                                         className: "h-4 w-4 transition-all"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/sports/SportCard.tsx",
-                                        lineNumber: 31,
-                                        columnNumber: 22
+                                        lineNumber: 45,
+                                        columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/sports/SportCard.tsx",
-                                lineNumber: 30,
+                                lineNumber: 43,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/sports/SportCard.tsx",
-                        lineNumber: 26,
+                        lineNumber: 37,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/sports/SportCard.tsx",
-                lineNumber: 23,
+                lineNumber: 28,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/sports/SportCard.tsx",
-        lineNumber: 18,
+        lineNumber: 19,
         columnNumber: 5
     }, this);
 }
@@ -982,12 +982,12 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2
 ;
 ;
 const firebaseConfig = {
-    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
+    apiKey: ("TURBOPACK compile-time value", "AIzaSyCx9B7Hl89UfhYAvg23WAOiKkgRht9s1pc"),
+    authDomain: ("TURBOPACK compile-time value", "playzo-booking.firebaseapp.com"),
+    projectId: ("TURBOPACK compile-time value", "playzo-booking"),
+    storageBucket: ("TURBOPACK compile-time value", "playzo-booking.firebasestorage.app"),
+    messagingSenderId: ("TURBOPACK compile-time value", "662011719207"),
+    appId: ("TURBOPACK compile-time value", "1:662011719207:web:9074a353cfeb48f18aa802")
 };
 const isFirebaseConfigured = Boolean(firebaseConfig.apiKey && firebaseConfig.authDomain && firebaseConfig.projectId && firebaseConfig.appId);
 let app;
@@ -1151,9 +1151,11 @@ async function createReservation(params) {
         for (const slotId of params.slotIds){
             const lockRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$firestore$2f$dist$2f$common$2d$DjihRWhV$2e$node$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__t__as__doc$3e$__["doc"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$firebase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["db"], "slotLocks", slotId);
             tx.set(lockRef, {
+                id: slotId,
                 resourceId: params.resourceId,
                 date: params.date,
-                startTime: slotId.split("_").pop(),
+                startTime: slotId.split("_").pop() ?? "",
+                endTime: "",
                 bookingId: bookingRef.id,
                 userId: params.userId,
                 status: "TEMPORARILY_RESERVED",

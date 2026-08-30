@@ -19,8 +19,8 @@ export interface Resource {
   type: string;
   description: string;
   image: string;
-  pricePerSlot: number;
-  slotDuration: number; // minutes
+  pricePerSlot: string;
+  slotDuration: string; // minutes
   openingTime: string; // "HH:mm" 24hr
   closingTime: string; // "HH:mm" 24hr, may be "24:00" or wrap past midnight
   active: boolean;

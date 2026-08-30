@@ -12,7 +12,7 @@ export interface BookingDraft {
   slotIds: string[];
   startTime: string;
   endTime: string;
-  pricePerSlot: number;
+  pricePerSlot: string;
 }
 
 interface BookingDraftContextValue {

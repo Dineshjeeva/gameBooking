@@ -143,15 +143,17 @@ export async function createReservation(params: {
     }
     for (const slotId of params.slotIds) {
       const lockRef = doc(db!, "slotLocks", slotId);
-      tx.set(lockRef, {
-        resourceId: params.resourceId,
-        date: params.date,
-        startTime: slotId.split("_").pop(),
-        bookingId: bookingRef.id,
-        userId: params.userId,
-        status: "TEMPORARILY_RESERVED",
-        expiresAt,
-      });
+     tx.set(lockRef, {
+  id: slotId,
+  resourceId: params.resourceId,
+  date: params.date,
+  startTime: slotId.split("_").pop() ?? "",
+  endTime: "",
+  bookingId: bookingRef.id,
+  userId: params.userId,
+  status: "TEMPORARILY_RESERVED",
+  expiresAt,
+});
     }
   });
 
